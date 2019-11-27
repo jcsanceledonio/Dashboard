@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Crear disco</title>
 
     <base href="/">
 
@@ -39,7 +39,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Disc Admin <sup>2</sup></div>
             </a>
 
             <!-- Divider -->
@@ -85,7 +85,7 @@
             <hr class="sidebar-divider">
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -311,67 +311,64 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                                <div class="col-lg-7">
-                                    <div class="p-5">
-                                        <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                                        </div>
-                                        <form class="user">
-                                            <div class="form-group row">
-                                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <input type="text" class="form-control form-control-user"
-                                                        id="exampleFirstName" placeholder="First Name">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control form-control-user"
-                                                        id="exampleLastName" placeholder="Last Name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="email" class="form-control form-control-user"
-                                                    id="exampleInputEmail" placeholder="Email Address">
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <input type="password" class="form-control form-control-user"
-                                                        id="exampleInputPassword" placeholder="Password">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="password" class="form-control form-control-user"
-                                                        id="exampleRepeatPassword" placeholder="Repeat Password">
-                                                </div>
-                                            </div>
-                                            <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                                Register Account
-                                            </a>
-                                            <hr>
-                                            <a href="index.html" class="btn btn-google btn-user btn-block">
-                                                <i class="fab fa-google fa-fw"></i> Register with Google
-                                            </a>
-                                            <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                                <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                            </a>
-                                        </form>
-                                        <hr>
-                                        <div class="text-center">
-                                            <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="small" href="login.html">Already have an account? Login!</a>
-                                        </div>
-                                    </div>
-                                </div>
+                    <!-- Nested Row within Card Body -->
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6">
+                            <!-- <div class="p-5"> -->
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Crear un disco</h1>
                             </div>
-                        </div>
-                    </div>
+                            <form action="URL_CONTROLADOR" method="post">
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" name="cover"
+                                        placeholder="URL de la imagen, formato .jpg .png .gif" required autofocus
+                                        pattern="(.*?)\.(jpg|gif|jpeg|png)$" onblur="cargarImagen(this.value)">
+                                </div>
 
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" name="titulo"
+                                        placeholder="Titulo" required pattern=".{1,100}">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" name="artista"
+                                        placeholder="Artista" required pattern=".{1,100}">
+                                </div>
+
+                                <!-- TODO https://jqueryui.com/datepicker/ -->
+                                <div class="form-group">
+                                    <input type="date" class="form-control form-control-user" name="date"
+                                        placeholder="Fecha de lanzamiento" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-outline-primary btn-user btn-block">Crear
+                                    disco</button>
+                            </form>
+                            <!--    </div> -->
+
+                            <hr>
+                        </div>
+                        <!-- /.col-sm-6 -->
+
+                        <div class="col-sm-6 bg-disc-image" id="container-img">
+                            <!-- Cargamos la imagen dinamicamente con js -->
+                        </div>
+
+                        <script>
+                            function cargarImagen(url) {
+                                console.debug('url %o', url);
+                                let container = document.getElementById('container-img');
+                                /* insertando una etiqueta img dentro del div */
+                                /*  let imagen = '<img src="' + url + '" alt="imagen">';
+                                 container.innerHTML = imagen; */
+                                /* Cambiando los estilos*/
+                                container.style.background = "url(" + url + ")";
+                                container.style.backgroundPosition = "center";
+                                container.style.backgroundSize = "cover";
+                            }
+                        </script>
+                    </div>
+                    <!-- /.row -->
                 </div>
                 <!-- /.container-fluid -->
 
@@ -428,14 +425,14 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+
 
 </body>
 
